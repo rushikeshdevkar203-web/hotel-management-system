@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Room</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/images/hotel-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Dark Overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.55);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Premium Glass Form */
+        .form-container {
+            width: 550px;                 /* Bigger Size */
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 18px;
+        }
+
+        input[type="date"] {
+            height: 45px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #0056b3, #0099cc);
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+    <div class="form-container">
+
+        <h2>Book Room</h2>
+
+        <form th:action="@{/save-booking}" th:object="${booking}" method="post">
+
+            <label>Room:</label>
+            <select th:field="*{roomNo}">
+                <option th:each="room : ${rooms}"
+                        th:value="${room.roomNo}"
+                        th:text="${room.roomNo}">
+                </option>
+            </select>
+
+            <label>Customer Name:</label>
+            <input type="text" th:field="*{customerName}" />
+
+            <label>Phone:</label>
+            <input type="text" th:field="*{phone}" />
+
+            <label>Check In:</label>
+            <input type="date" th:field="*{checkIn}" />
+
+            <label>Check Out:</label>
+            <input type="date" th:field="*{checkOut}" />
+
+            <button type="submit">Book Room</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

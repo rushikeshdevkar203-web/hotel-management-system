@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookings</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/images/hotel-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .table-container {
+            width: 95%;
+            margin: auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            font-size: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            background: rgba(0, 123, 255, 0.8);
+            font-size: 22px;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        tr:hover {
+            background: rgba(0, 123, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        /* Status Colors */
+        .available {
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        .booked {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+
+    <h2>All Bookings</h2>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Room</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+            </tr>
+
+            <tr th:each="b : ${bookings}">
+                <td th:text="${b.id}"></td>
+                <td th:text="${b.roomNo}"></td>
+                <td th:text="${b.customerName}"></td>
+                <td th:text="${b.phone}"></td>
+                <td th:text="${b.checkIn}"></td>
+                <td th:text="${b.checkOut}"></td>
+                <td th:text="${b.status}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

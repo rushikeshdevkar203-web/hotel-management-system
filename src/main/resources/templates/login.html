@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/images/hotel-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Light Overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.35); /* lighter */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Glass Effect Form */
+        .form-container {
+            width: 420px;
+            padding: 45px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 20px;
+        }
+
+        input:focus {
+            box-shadow: 0 0 5px #00ffcc;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #141e30, #243b55);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #243b55, #141e30);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #ddd;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+
+    <div class="form-container">
+        <h2>Welcome Back, Rushikesh 👋</h2>
+
+		<form th:action="@{/login}" method="post">
+		    <input type="text" name="username" placeholder="Username" required />
+		    <br><br>
+		    <input type="password" name="password" placeholder="Password" required />
+		    <br><br>
+		    <button type="submit">Login</button>
+		</form>
+
+        <div class="footer-text">
+            Hotel Management System © 2026
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

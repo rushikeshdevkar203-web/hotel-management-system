@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Hotel Management System</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/images/hotel-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* ===== DARK OVERLAY ===== */
+        .overlay {
+            background: rgba(0, 0, 0, 0.4);
+            min-height: 100vh;
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            display: flex;
+            padding: 12px 25px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .topbar-title {
+            font-size: 26px;
+            font-weight: bold;
+            width: 30%;
+        }
+		
+		/* ===== BOTTOM BAR ===== */
+		.footer {
+		    background: #000;      /* Solid black */
+		    color: white;
+		    text-align: center;
+		    padding: 12px 10px;
+		    position: fixed;
+		    bottom: 0;
+		    width: 100%;
+		    font-size: 22px;
+		    box-sizing: border-box;
+		}
+
+		.footer span {
+		    color: #00ffcc;
+		    font-weight: bold;
+		}
+
+        .marquee-container {
+            width: 50%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .marquee-text {
+            white-space: nowrap;
+            animation: scroll 18s linear infinite;
+            color: #00ff99;
+            font-weight: bold;
+			font-size: 26px;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        #clock {
+            width: 30%;
+            text-align: right;
+            font-weight: bold;
+            color: #00ffcc;
+			font-size: 26px;
+        }
+
+        /* ===== SIDEBAR ===== */
+		.sidebar {
+		    width: 240px;
+		    height: 100vh;
+		    position: fixed;
+		    top: 60px;
+		    left: 0;
+		    padding-top: 20px;
+		}
+
+		.sidebar a {
+		    display: flex;
+		    align-items: center;
+		    gap: 12px;
+		    color: white;
+		    padding: 15px 25px;
+		    text-decoration: none;
+		    font-weight: bold;
+		    font-size: 28px;
+		    transition: 0.3s;
+		}
+
+		.sidebar a i {
+		    font-size: 28px;
+		}
+
+		.sidebar a:hover {
+		    padding-left: 35px;
+		    border-left: 4px solid #00ffcc;
+		}
+
+        /* ===== MAIN CONTENT ===== */
+		.content {
+		    margin-left: 260px;
+		    padding: 90px 20px 20px 20px; /* bottom space added */
+		    text-align: center;
+		    color: white;
+		}
+
+        h1 {
+            font-size: 46px;
+            color: rgb(0, 0, 0);
+        }
+
+        h3 {
+            font-size: 28px;
+            color: rgb(0, 0, 160);
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="topbar">
+
+        <div class="topbar-title">
+            HOTEL MANAGEMENT SYSTEM
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee-text">
+                Luxury Rooms | 24/7 Service | Best Hospitality | Owner : Rushikesh Devkar | Contact : 8262895492
+            </div>
+        </div>
+
+        <div id="clock"></div>
+
+    </div>
+
+    <!-- ===== SIDEBAR ===== -->
+	<div class="sidebar">
+	    <a th:href="@{/add-room}">
+	        <i class="fa-solid fa-plus"></i> Add Room
+	    </a>
+
+	    <a th:href="@{/rooms}">
+	        <i class="fa-solid fa-bed"></i> View Rooms
+	    </a>
+
+	    <a th:href="@{/book-room}">
+	        <i class="fa-solid fa-calendar-check"></i> Book Room
+	    </a>
+
+	    <a th:href="@{/bookings}">
+	        <i class="fa-solid fa-chart-column"></i> View Bookings
+	    </a>
+
+	    <a th:href="@{/login}">
+	        <i class="fa-solid fa-right-from-bracket"></i> Logout
+	    </a>
+	</div>
+
+    <!-- ===== CENTER CONTENT ===== -->
+    <div class="content">
+        <h1>Welcome To Rushi's Hotel</h1>
+        <h3>Our Service Is Always Available 24/7</h3>
+        <p>Manage Rooms | Bookings | Customers Easily</p>
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 Rushi's Hotel | Designed by: <span>Rushikesh Devkar | Contact:8262895492</span> | All Rights Reserved
+</div>
+
+<!-- ===== LIVE CLOCK SCRIPT ===== -->
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById("clock").innerHTML =
+            now.toLocaleDateString() + " " + now.toLocaleTimeString();
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+</body>
+</html>
